@@ -7,7 +7,7 @@ public class DiningPhilosophers2 {
     	DiningPhilosophers2 dp = new DiningPhilosophers2();
     	ReentrantLock[] fork =  new ReentrantLock[5];
 	    for (int i = 0; i < 5; i++) {
-	    	fork[i] = new ReentrantLock();     //total 5 chopsticks 
+	    	fork[i] = new ReentrantLock();  
 	    }
 
 	    for (int i = 0; i < 5; i++) {

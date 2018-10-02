@@ -1,120 +1,220 @@
 package Assign1;
 
 import java.util.Random;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 
 public class CigaretteSmoker {
+	
+	private final Lock ingredientlock = new ReentrantLock();
+	private final Condition tobacco = ingredientlock.newCondition();
+	private final Condition paper = ingredientlock.newCondition();
+	private final Condition match = ingredientlock.newCondition();
+	private final Condition tobaccosem = ingredientlock.newCondition();
+	private final Condition papersem = ingredientlock.newCondition();
+	private final Condition matchsem = ingredientlock.newCondition();
+	private boolean isPaper, isMatch, isTobacco = false;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		CigaretteSmoker cs = new CigaretteSmoker();
+		ReentrantLock AgentLock =  new ReentrantLock();
+		ReentrantLock PuserLock =  new ReentrantLock();
 		
-		Agent agent = cs.new Agent(); 
-		Smoker tabaccoSmoker = cs.new Smoker(agent, "Tabacco");
-		Smoker paperSmoker = cs.new Smoker(agent, "Paper");
-		Smoker matchesSmoker = cs.new Smoker(agent, "Matches");
-		new Thread(agent).start();
-		new Thread(tabaccoSmoker).start();
-		new Thread(paperSmoker).start();
-		new Thread(matchesSmoker).start();	
+		
+		
+		new Thread(cs.new Smoker(AgentLock, "Tobacco")).start();
+		new Thread(cs.new Smoker(AgentLock, "Paper")).start();
+		new Thread(cs.new Smoker(AgentLock, "Match")).start();
+		new Thread(cs.new Pusher(PuserLock, "Tobacco")).start();
+		new Thread(cs.new Pusher(PuserLock, "Paper")).start();
+		new Thread(cs.new Pusher(PuserLock, "Match")).start();
+		new Thread(cs.new Agent(AgentLock)).start(); 
+		
 	}
 	
-	class Smoker implements Runnable{
+	class Pusher implements Runnable{
 
-		private Agent agent;
-		private String ownIngredient;
-		private String missingIngredients;
+		private ReentrantLock PusherLock;
+		private String wakeupIngredient;
 
-		public Smoker(Agent agent, String ingredient) {
-			this.agent = agent;
-			ownIngredient = ingredient;
-			if (ownIngredient.equals("Tabacco")) {
-				missingIngredients = "Paper and Matches";
-			}
-			if (ownIngredient.equals("Paper")) {
-				missingIngredients = "Tabacco and Matches";
-			}
-			if (ownIngredient.equals("Matches")) {
-				missingIngredients = "Paper and Tabacco";
-			}
+		public Pusher(ReentrantLock PuserLock, String Ingredient) {
+			this.PusherLock = PuserLock;	
+			this.wakeupIngredient = Ingredient;
 		}
 
 		public void run() {
 			while (true) {
-				if (agent.finished) {
-					return;
+				if (wakeupIngredient.equals("Tobacco")) {
+					try {
+						tobacco.await();
+						PusherLock.lock();
+						if (isPaper)
+						{
+							isPaper = false;
+							matchsem.signal();
+							System.out.println("Tobacco pusher wake up, find paper, signal mathch");
+						}
+						else if (isMatch)
+						{
+							isMatch = false;
+							papersem.signal();
+							System.out.println("Tobacco pusher wake up, find match, signal paper");
+						}
+						else
+						{
+							isTobacco = true;
+						}
+						PusherLock.unlock();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}					
 				}
-				try {
-					agent.semaphoreLatchStart.acquire();
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
+				else if (wakeupIngredient.equals("Paper")) {					
+					try {
+						paper.await();
+						PusherLock.lock();
+						if (isTobacco)
+						{
+							isTobacco = false;
+							matchsem.signal();
+							System.out.println("paper pusher wake up, find paper, signal match");
+						}
+						else if (isMatch)
+						{
+							isMatch = false;
+							tobaccosem.signal();
+							System.out.println("paper pusher wake up, find match, signal tobacco");
+						}
+						else
+						{
+							isPaper= true;
+						}
+						PusherLock.unlock();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
 				}
-				synchronized (agent.latch) {
-					agent.latch.countDown();
+				else if (wakeupIngredient.equals("Match")) {
+					
+					try {
+						match.await();
+						PusherLock.lock();
+						if (isTobacco)
+						{
+							isTobacco = false;
+							papersem.signal();
+							System.out.println("match pusher wake up, find tobacco, signal paper");
+						}
+						else if (isPaper)
+						{
+							isPaper = false;
+							tobaccosem.signal();
+							System.out.println("match pusher wake up, find paper, signal tobacco");
+						}
+						else
+						{
+							isMatch= true;
+						}
+						PusherLock.unlock();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}		
+			}
+		}
+	}
+	
+	class Smoker implements Runnable{
+
+		private ReentrantLock agentLock;
+		private String ownIngredient;
+
+		public Smoker(ReentrantLock agentLock, String ownIngredient) {
+
+			this.agentLock = agentLock;	
+			this.ownIngredient = ownIngredient;
+		}
+
+		public void run() {
+			while (true) {
+				if (ownIngredient.equals("Tobacco")) {
+					//making Cigarette
+					try {
+						tobaccosem.await();
+						System.out.println("Tobacco smoker get Paper and Matches, start to make cigarette...");
+						agentLock.unlock();					
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}					
 				}
-				try {
-					agent.semaphoreIngredient.acquire();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+				else if (ownIngredient.equals("Paper")) {
+					try {
+						papersem.await();
+						System.out.println("Paper smoker get Tobacco and Matches, start to make cigarette...");
+						agentLock.unlock();					
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}									
 				}
-				if (agent.finished) {
-					System.out.println("The smoking agent " +
-							"is no longer available.I'll give up smoking.");
-					return;
-				}
-				if (agent.disposedIngredients.equals(missingIngredients)) {
-					System.out.println("I owe " + ownIngredient + " and I received "
-							+ agent.disposedIngredients + ", so now I can smoke.");
-				}
-				agent.semaphoreSmoked.release();
+				else if (ownIngredient.equals("Match")) {
+					try {
+						matchsem.await();
+						System.out.println("Paper smoker get Tobacco and Matches, start to make cigarette...");
+						agentLock.unlock();					
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}										
+				}	
+				agentLock.unlock();		//enable agent to dispose ingredients		
 			}
 		}
 	}
 	
 	class Agent implements Runnable{
+		private ReentrantLock agentLock;
+		
+	
+		public Agent(ReentrantLock agentLock)
+		{
+			this.agentLock = agentLock;	
 
-		public Semaphore semaphoreSmoked = new Semaphore(0);
-		public Semaphore semaphoreIngredient = new Semaphore(0);
-		public String disposedIngredients = new String();
-		public CountDownLatch latch;
-		public Semaphore semaphoreLatchStart = new Semaphore(0);
-		public boolean finished = false;
-
-		public void run() {
-			Random random = new Random();
+		}
+		
+		public void run() {			
 			int currentIngredients;
-			for (int i = 0; i < 10; i++) {
-				latch = new CountDownLatch(3);
-				semaphoreLatchStart.release(3);
-				try {
-					latch.await();
-				} catch (InterruptedException e1) {
-					e1.printStackTrace();
-				}
-				currentIngredients = random.nextInt(3);
-				if (currentIngredients == 0) {
-					disposedIngredients = "Paper and Matches";
-				}
-				if (currentIngredients == 1) {
-					disposedIngredients = "Tabacco and Matches";
-				}
-				if (currentIngredients == 2) {
-					disposedIngredients = "Paper and Tabacco";
-				}
-				System.out.println("Disposed Ingredients: " + disposedIngredients);
-				semaphoreIngredient.release(3);
-				try {
-					semaphoreSmoked.acquire(3);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			while(true)
+			{
+					agentLock.lock();
+					//dispose times
+					Random random = new Random();
+					currentIngredients = random.nextInt(3);
+					if (currentIngredients == 0) {
+						System.out.println("Disposed Ingredients: " + "Paper and Matches");
+						paper.signal();
+						match.signal();
+						
+					}
+					if (currentIngredients == 1) {
+						System.out.println("Disposed Ingredients: " + "Tabacco and Matches");
+						tobacco.signal();
+						match.signal();
+					}
+					if (currentIngredients == 2) {
+						System.out.println("Disposed Ingredients: " + "Paper and Tabacco");
+						paper.signal();
+						tobacco.signal();
+					}		
 			}
-			finished = true;
-			semaphoreLatchStart.release(3);
-			semaphoreIngredient.release(3);
 		}
 	}
-	
 }
