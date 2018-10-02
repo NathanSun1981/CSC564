@@ -1,0 +1,45 @@
+package Assign1;
+
+import Assign1.ReaderWriter.Writer;
+
+public class DiningPhilosophers {
+	
+    public static void main(String[] args) {
+    	DiningPhilosophers dp = new DiningPhilosophers();
+	    int sum = 5;
+	    Chopstick[] chopsticks = new Chopstick[sum];
+	    for (int i = 0; i < sum; i++) {
+	        chopsticks[i] = dp.new Chopstick();
+	    }
+	    for (int i = 0; i < sum; i++) {
+	        new Thread(dp.new Philosopher(i, chopsticks[i], chopsticks[(i + 1) % sum])).start();
+	    }
+	 }
+
+	class Chopstick {
+	    public Chopstick() {
+	    }
+	}
+	class Philosopher implements Runnable {
+
+	    private Chopstick left;
+	    private Chopstick right;	    
+	    private int  id;   
+ 	    public Philosopher(int id, Chopstick left, Chopstick right) {
+	    	this.id = id;
+	        this.left = left;
+	        this.right = right;
+	    }
+	    public void run() {
+	        while (true) {
+	        	System.out.println("Philosopher " + id + " is thinking"); 
+	            synchronized (left) {  //lock the left chopsticks
+	            	synchronized (right) {   //lock the right chopsticks
+	            		System.out.println("Philosopher " + id + " is eating"); 
+	            	}
+	            }
+	        } 
+	    }
+	}
+}
+

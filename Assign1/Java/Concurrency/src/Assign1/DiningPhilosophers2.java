@@ -1,0 +1,79 @@
+package Assign1;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.TimeUnit;
+
+public class DiningPhilosophers2 {
+    public static void main(String[] args) {
+    	DiningPhilosophers2 dp = new DiningPhilosophers2();
+    	ReentrantLock[] fork =  new ReentrantLock[5];
+	    for (int i = 0; i < 5; i++) {
+	    	fork[i] = new ReentrantLock();     //total 5 chopsticks 
+	    }
+
+	    for (int i = 0; i < 5; i++) {
+	        new Thread(dp.new Philosopher(i, fork[i], fork[(i + 1) % 5])).start();   
+	    }
+	 }
+    
+	class Fork {
+	    public Fork() {	
+	    }
+	}
+
+	class Philosopher implements Runnable {
+	    private ReentrantLock left;
+	    private ReentrantLock right; 
+	    private int  id;   
+	    
+ 	    public Philosopher(int id, ReentrantLock left, ReentrantLock right) {
+	    	this.id = id;
+	    	this.left = left;
+	    	this.right = right;
+	    }
+
+	    public void run() {
+	        while (true) {
+	        	try {
+	                Thread.sleep(100);
+	            } catch (InterruptedException e1) {
+	                e1.printStackTrace();
+	            }
+
+	        	//System.out.println("Philosopher " + id + " is thinking"); 
+	            left.lock(); 
+	            //take the left fork
+	            //System.out.println("Philosopher " + id + " take the left fork"); 
+	            try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+
+	            try{
+	            	//System.out.println("Philosopher " + id + " try to get the right fork");
+                    if(right.tryLock(1000,TimeUnit.MILLISECONDS)){
+                        try{
+                            Thread.sleep(100);//
+                            //System.out.println("Philosopher " + id + " take the right fork");
+                            System.out.println("Philosopher " + id + " is eating"); 
+                        }finally {
+                        	//System.out.println("Philosopher " + id + " put the right fork");
+                            right.unlock();
+                        }
+                    }else{
+                    	//System.out.println("Philosopher " + id + " put the left fork when not get");
+                    	left.unlock();
+                    	continue; //continue thinking
+                    }
+                } catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+	            //System.out.println("Philosopher " + id + " put the left fork when get");
+                left.unlock();
+	        } 
+	    }
+	}
+}
+
+

@@ -1,0 +1,75 @@
+package Assign1;
+
+
+import java.util.LinkedList;  
+import java.util.concurrent.locks.Condition;  
+import java.util.concurrent.locks.Lock;  
+import java.util.concurrent.locks.ReentrantLock;  
+
+
+public class ReaderWriter {
+
+    private final int MAX_SIZE = 4;      
+    private LinkedList<Object> list = new LinkedList<Object>();  
+    private final Lock readerlock = new ReentrantLock();    
+    private final Lock mutex = new ReentrantLock();
+    
+    public static void main(String[] args) {
+    	ReaderWriter rw = new ReaderWriter();
+        for(int i = 0; i < 10; i++)
+        {
+	      	new Thread(rw.new Writer(i)).start();
+	       	new Thread(rw.new Reader(i)).start();
+        }
+
+    }
+  
+    class Writer implements Runnable {
+    	private int  id;
+        public Writer(int id)
+        {
+            this.id = id;
+        }
+        @Override
+        public void run()  
+        {          	
+        	readerlock.lock();
+	        System.out.println("writer " + id + " is writing"); 
+	        readerlock.unlock();  
+
+        }  
+    }
+  
+    class Reader implements Runnable {   
+    	private int reader = 0;
+    	private int  id;
+        public Reader(int id)
+        {
+            this.id = id;
+        }
+    	@Override
+    	public void run()  
+        {   
+    		mutex.lock();
+    		reader += 1;
+    		System.out.println("reader = " + reader); 
+    		if (reader == 1)
+    		{    			
+    			readerlock.lock();
+    			System.out.println("lockwriter"); 
+    		}
+    		mutex.unlock();
+    		
+            System.out.println("reader " + id + " is reading"); 
+            
+            mutex.lock();
+            reader -= 1;
+            if (reader == 0)
+            {            	
+            	readerlock.unlock();
+            	System.out.println("unlockwriter"); 
+            }
+            mutex.unlock();
+        }     	
+    }
+}

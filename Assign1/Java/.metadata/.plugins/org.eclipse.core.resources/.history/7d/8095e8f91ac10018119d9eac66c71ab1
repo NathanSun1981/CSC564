@@ -1,0 +1,65 @@
+package Assign1;
+
+
+import java.util.LinkedList;  
+import java.util.concurrent.locks.Condition;  
+import java.util.concurrent.locks.Lock;  
+import java.util.concurrent.locks.ReentrantLock;  
+
+
+public class ReaderWriter {
+
+    private final int MAX_SIZE = 4;  
+    private final int reader = 0;
+    private final int writer = 0;
+    
+    private LinkedList<Object> list = new LinkedList<Object>();  
+    private final Lock readerlock = new ReentrantLock();    
+    //private final Lock readerlock = new ReentrantLock();
+    
+    public static void main(String[] args) {
+    	ReaderWriter rw = new ReaderWriter();
+        for(int i = 0; i < 10; i++)
+        {
+	      	new Thread(rw.new Writer(i)).start();
+	       	new Thread(rw.new Reader(i)).start();
+        }
+
+    }
+  
+    class Writer implements Runnable {
+    	
+    	private int  id;
+        public Writer(int id)
+        {
+            this.id = id;
+        }
+    	
+        @Override
+        public void run()  
+        {  
+        	
+        	readerlock.lock();
+	        System.out.println("writer is writing");        
+    	
+	        readerlock.unlock();  
+
+        }  
+    }
+  
+    class Reader implements Runnable {   
+    	private int  id;
+        public Reader(int id)
+        {
+            this.id = id;
+        }
+    	
+    	@Override
+    	public void run()  
+        {     		
+    		readerlock.lock();        
+            System.out.println("reader is reading"); 
+    		readerlock.unlock(); 
+        }     	
+    }
+}
