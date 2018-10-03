@@ -46,20 +46,18 @@ public class CigaretteSmoker {
 		public void run() {
 			while (true) {
 				if (wakeupIngredient.equals("Tobacco")) {
-					try {
-		                Thread.sleep(100);
-		            } catch (InterruptedException e1) {
-		                e1.printStackTrace();
-		            }
 					ingredientlock.lock();
+					//System.out.println("tobacco start");
 					try {	
 						tobacco.await();
+						System.out.println("tobacco get signal");
 						PusherLock.lock();
+						//System.out.println("tobacco lock pusher = " + isPaper + isMatch + isTobacco);
 						if (isPaper)
 						{
 							isPaper = false;
-							matchsem.signal();
 							System.out.println("Tobacco pusher wake up, find paper, signal mathch");
+							matchsem.signal();
 						}
 						else if (isMatch)
 						{
@@ -71,6 +69,12 @@ public class CigaretteSmoker {
 						{
 							isTobacco = true;
 						}
+						//System.out.println("final resutlt =" + isPaper + isMatch + isTobacco);
+						try {
+			                Thread.sleep(10);
+			            } catch (InterruptedException e1) {
+			                e1.printStackTrace();
+			            }
 						PusherLock.unlock();
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
@@ -78,19 +82,18 @@ public class CigaretteSmoker {
 					}	
 					finally
 					{
+						//System.out.println("tobacco release lock");
 						ingredientlock.unlock();	
 					}
 				}
-				else if (wakeupIngredient.equals("Paper")) {	
-					try {
-		                Thread.sleep(100);
-		            } catch (InterruptedException e1) {
-		                e1.printStackTrace();
-		            }
+				else if (wakeupIngredient.equals("Paper")) {
+					//System.out.println("paper start");
 					ingredientlock.lock();
 					try {
 						paper.await();
+						System.out.println("paper get signal");
 						PusherLock.lock();
+						//System.out.println("paper lock pusher = " + isPaper + isMatch + isTobacco);
 						if (isTobacco)
 						{
 							isTobacco = false;
@@ -107,6 +110,12 @@ public class CigaretteSmoker {
 						{
 							isPaper= true;
 						}
+						//System.out.println("final resutlt =" + isPaper + isMatch + isTobacco);
+						try {
+			                Thread.sleep(10);
+			            } catch (InterruptedException e1) {
+			                e1.printStackTrace();
+			            }
 						PusherLock.unlock();
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
@@ -114,20 +123,19 @@ public class CigaretteSmoker {
 					}
 					finally
 					{
+						//System.out.println("paper release lock");
 						ingredientlock.unlock();
 					}
 
 				}
 				else if (wakeupIngredient.equals("Match")) {
-					try {
-		                Thread.sleep(100);
-		            } catch (InterruptedException e1) {
-		                e1.printStackTrace();
-		            }
+					//System.out.println("match start");
 					ingredientlock.lock();
 					try {
 						match.await();
+						System.out.println("match get signal");
 						PusherLock.lock();
+						//System.out.println("match lock pusher = " + isPaper + isMatch + isTobacco);
 						if (isTobacco)
 						{
 							isTobacco = false;
@@ -144,6 +152,12 @@ public class CigaretteSmoker {
 						{
 							isMatch= true;
 						}
+						//System.out.println("final resutlt =" + isPaper + isMatch + isTobacco);
+						try {
+			                Thread.sleep(10);
+			            } catch (InterruptedException e1) {
+			                e1.printStackTrace();
+			            }
 						PusherLock.unlock();
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
@@ -151,6 +165,7 @@ public class CigaretteSmoker {
 					}
 					finally
 					{
+						//System.out.println("match release lock");
 						ingredientlock.unlock();
 					}
 				}		
@@ -168,11 +183,6 @@ public class CigaretteSmoker {
 		public void run() {
 			while (true) {
 				if (ownIngredient.equals("Tobacco")) {
-					try {
-		                Thread.sleep(100);
-		            } catch (InterruptedException e1) {
-		                e1.printStackTrace();
-		            }
 					//making Cigarette
 					ingredientlock.lock();
 					try {
