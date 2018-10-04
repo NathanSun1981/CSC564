@@ -70,11 +70,7 @@ public class CigaretteSmoker {
 							isTobacco = true;
 						}
 						//System.out.println("final resutlt =" + isPaper + isMatch + isTobacco);
-						try {
-			                Thread.sleep(10);
-			            } catch (InterruptedException e1) {
-			                e1.printStackTrace();
-			            }
+						
 						PusherLock.unlock();
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
