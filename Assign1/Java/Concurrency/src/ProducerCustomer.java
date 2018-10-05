@@ -1,11 +1,11 @@
-package Assign1;
+
 
 import java.util.LinkedList;  
 import java.util.concurrent.locks.Condition;  
 import java.util.concurrent.locks.Lock;  
 import java.util.concurrent.locks.ReentrantLock;  
 
-public class Cache {
+public class ProducerCustomer {
 
     private final int MAX_SIZE = 4;  
     
@@ -15,11 +15,11 @@ public class Cache {
     private final Condition emptyLock = lock.newCondition();  
     
     public static void main(String[] args) {
-        Cache cache = new Cache();
+        ProducerCustomer pc = new ProducerCustomer();
         for(int i = 0; i < 4; i++)
         {
-	      	new Thread(cache.new Producer(i)).start();
-	       	new Thread(cache.new Consumer(i)).start();
+	      	new Thread(pc.new Producer(i)).start();
+	       	new Thread(pc.new Consumer(i)).start();
         }
 
     }

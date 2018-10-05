@@ -1,13 +1,13 @@
-package Assign1;
 
-public class DiningPhilosophers1 {
+
+public class DiningPhilosophers {
 	
     public static void main(String[] args) {
-    	DiningPhilosophers1 dp = new DiningPhilosophers1();
+    	DiningPhilosophers dp = new DiningPhilosophers();
     	
     	Fork[] fork = new Fork[5];
 	    for (int i = 0; i < 5; i++) {
-	    	fork[i] = dp.new Fork(i);     
+	    	fork[i] = dp.new Fork();     //total 5 chopsticks 
 	    }
 	    for (int i = 0; i < 5; i++) {
 	        new Thread(dp.new Philosopher(i, fork[i], fork[(i + 1) % 5])).start();    
@@ -15,18 +15,8 @@ public class DiningPhilosophers1 {
 	 }
 
 	class Fork {
-		private int id;
-
-	    public Fork(int id) {
-	        this.id=id;
+	    public Fork() {
 	    }
-	    public int getId() {
-	        return id;
-	    }
-	    public void setId(int id) {
-	        this.id = id;
-	    }
-
 	}
 	class Philosopher implements Runnable {
 
@@ -35,12 +25,8 @@ public class DiningPhilosophers1 {
 	    private int  id;   
  	    public Philosopher(int id, Fork left, Fork right) {
 	    	this.id = id;
-	    	if(left.getId()<right.getId()){
-	            this.left = left;this.right = right;
-	        }else{
-	            this.left=right;this.right=left;
-	        }
-
+	        this.left = left;
+	        this.right = right;
 	    }
 	    public void run() {
 	        while (true) {
@@ -49,7 +35,7 @@ public class DiningPhilosophers1 {
 	            } catch (InterruptedException e1) {
 	                e1.printStackTrace();
 	            }
-	        	// System.out.println("Philosopher " + id + " is thinking"); 
+	        	System.out.println("Philosopher " + id + " is thinking"); 
 	            synchronized (left) {  //
 	            	//take the left fork
 	            	try {
@@ -57,14 +43,14 @@ public class DiningPhilosophers1 {
                     } catch (InterruptedException e1) {
                         e1.printStackTrace();
                     }
-	            	//System.out.println("Philosopher " + id + " take the left fork"); 
+	            	System.out.println("Philosopher " + id + " take the left fork"); 
 	            	synchronized (right) {   //take the right fork
 	            		try {
 	                        Thread.sleep(100);
 	                    } catch (InterruptedException e1) {
 	                        e1.printStackTrace();
 	                    }
-	            		//System.out.println("Philosopher " + id + " take the right fork"); 
+	            		System.out.println("Philosopher " + id + " take the right fork"); 
 	            		System.out.println("Philosopher " + id + " is eating"); 
 	            	}
 	            }
