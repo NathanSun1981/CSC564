@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec51419f-7dba-4bd9-8efe-eeb97577e130" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Src/Concurrency/MakeH2O.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.recommenders/caches/identified-project-coordinates.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../.recommenders/caches/identified-project-coordinates.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/_1.fdt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/_1.fdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/_1.fnm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/_1.frq" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/_1.nrm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/_1.prx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/_1.tii" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/_1.tis" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/segments.gen" beforeDir="false" afterPath="$PROJECT_DIR$/../../.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/segments.gen" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/segments_2" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java/Concurrency/bin/Assign1/CigaretteSmoker$Agent.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java/Concurrency/bin/Assign1/CigaretteSmoker$Agent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java/Concurrency/bin/Assign1/CigaretteSmoker$Smoker.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Java/Concurrency/bin/Assign1/CigaretteSmoker$Smoker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java/Concurrency/src/Assign1/CigaretteSmoker.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java/Concurrency/src/Assign1/CigaretteSmoker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Java/Concurrency/src/H2O.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java/Concurrency/src/H2O.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,29 +27,30 @@
     <session id="844753304">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.0" value="2" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="go" value="5" />
+          <entry key="go" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Go" value="5" />
+          <entry key="Go" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="go" value="651" />
+          <entry key="go" value="2005" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Go" value="651" />
+          <entry key="Go" value="2005" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -63,12 +74,12 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Src/Concurrency/producercustomer.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="14" column="50" lean-forward="true" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
+            <state relative-caret-position="158">
+              <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -76,8 +87,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Src/Concurrency/CigaretteSomker.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="92" column="20" lean-forward="true" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="20" />
+            <state relative-caret-position="289">
+              <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="27" />
+              <folding>
+                <element signature="e#14#60#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Src/Concurrency/MakeH2O.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="141">
+              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
               <folding>
                 <element signature="e#14#60#0" expanded="true" />
               </folding>
@@ -86,10 +109,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://C:/Go/src/sync/waitgroup.go">
+        <entry file="file://C:/Go/src/sync/mutex.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="73" column="49" lean-forward="true" selection-start-line="73" selection-start-column="49" selection-end-line="73" selection-end-column="49" />
+            <state relative-caret-position="247">
+              <caret line="133" selection-start-line="133" selection-end-line="133" />
             </state>
           </provider>
         </entry>
@@ -97,8 +120,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Src/Concurrency/readerwriter.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="13" column="51" lean-forward="true" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
+            <state relative-caret-position="255">
+              <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+              <folding>
+                <element signature="e#14#47#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -120,6 +146,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Src/Concurrency/CigaretteSomker.go" />
+        <option value="$PROJECT_DIR$/Src/Concurrency/test.go" />
+        <option value="$PROJECT_DIR$/Src/Concurrency/MakeH2O.go" />
       </list>
     </option>
   </component>
@@ -129,11 +157,16 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="1912" />
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/Src/golang.org/x/tools/cmd/heapview/client/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1040" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -141,7 +174,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -164,6 +196,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -187,12 +220,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build CigaretteSomker.go">
+  <component name="RunManager" selected="Go Build.go build MakeH2O.go">
     <configuration name="go build CigaretteSomker.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Go" />
       <working_directory value="$PROJECT_DIR$/" />
       <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/Src/Concurrency/CigaretteSomker.go" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build MakeH2O.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Go" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/Src/Concurrency/MakeH2O.go" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
@@ -216,9 +257,11 @@
       <item itemvalue="Go Build.go build readerwriter.go" />
       <item itemvalue="Go Build.go build producercustomer.go" />
       <item itemvalue="Go Build.go build CigaretteSomker.go" />
+      <item itemvalue="Go Build.go build MakeH2O.go" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build MakeH2O.go" />
         <item itemvalue="Go Build.go build CigaretteSomker.go" />
         <item itemvalue="Go Build.go build producercustomer.go" />
         <item itemvalue="Go Build.go build readerwriter.go" />
@@ -226,15 +269,14 @@
     </recent_temporary>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18017058" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20575693" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.49729145" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -257,24 +299,51 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Src/hello/hello.go" />
-    <entry file="file://$PROJECT_DIR$/Src/Concurrency/readerwriter.go">
+    <entry file="file://C:/Go/src/sync/waitgroup.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="13" column="51" lean-forward="true" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
+        <state relative-caret-position="138">
+          <caret line="70" column="40" lean-forward="true" selection-start-line="70" selection-start-column="40" selection-end-line="70" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Go/src/sync/waitgroup.go">
+    <entry file="file://$PROJECT_DIR$/Src/golang.org/x/tools/cmd/guru/unit_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="73" column="49" lean-forward="true" selection-start-line="73" selection-start-column="49" selection-end-line="73" selection-end-column="49" />
+        <state relative-caret-position="200">
+          <caret line="88" column="61" lean-forward="true" selection-start-line="88" selection-start-column="61" selection-end-line="88" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Src/Concurrency/test.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Src/Concurrency/readerwriter.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="e#14#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Go/src/runtime/sema.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="70" selection-start-line="70" selection-end-line="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Go/src/sync/mutex.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="133" selection-start-line="133" selection-end-line="133" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Src/Concurrency/CigaretteSomker.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="92" column="20" lean-forward="true" selection-start-line="92" selection-start-column="20" selection-end-line="92" selection-end-column="20" />
+        <state relative-caret-position="289">
+          <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="27" />
           <folding>
             <element signature="e#14#60#0" expanded="true" />
           </folding>
@@ -283,8 +352,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Src/Concurrency/producercustomer.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="50" lean-forward="true" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
+        <state relative-caret-position="158">
+          <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Src/Concurrency/MakeH2O.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+          <folding>
+            <element signature="e#14#60#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

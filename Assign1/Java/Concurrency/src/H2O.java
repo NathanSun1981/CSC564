@@ -1,84 +1,56 @@
-import java.util.Random;
-import java.util.concurrent.locks.Condition;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class H2O {
 	
 	private final static Lock lock = new ReentrantLock();
-	private final Condition makewater = lock.newCondition();
-	private final static Condition OxStart = lock.newCondition();
-	private final static Condition Hystart = lock.newCondition();
+	private final Semaphore Makewater =  new Semaphore(0);
+	private final static Semaphore Oxygen =  new Semaphore(1);
+	private final static Semaphore Hydrogen =  new Semaphore(2);
+	
 	
 	private int oxnum = 0;
 	private int hynum = 0;
 	
 	public static void main(String[] args) {
         H2O h2o = new H2O();
-        int gas;
             
         new Thread(h2o.new Maker()).start();  
-        
-    	while(true)
-    	{
-            try {	
-            	lock.lock();
-            		
-    			Random random = new Random();
-    			gas = random.nextInt(2);
-    			if (gas == 0) {
-    				OxStart.await();
-    				System.out.println("Provide Oxgen");
-    		        new Thread(h2o.new Oxygen()).start();  
-    			}
-    			if (gas == 1)
-    			{
-    				Hystart.await();
-    				System.out.println("Provide Oxgen");
-    		        new Thread(h2o.new Hydrogen()).start();  				
-    			}
-            }
-            catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-            }
-            finally
-            {
-            	lock.unlock();
-            }
-
-    	}
-        
+            		          	
+        for(int i = 0; i < 30; i++)
+        {
+            new Thread(h2o.new Oxygen()).start();  
+        }
+            for(int i = 0; i < 60; i++)
+        {
+            new Thread(h2o.new Hydrogen()).start();  
+        }			     
 	}
 	
 	 class Maker implements Runnable {
 		 	//make h2o
-	        public Maker(){}	        	
+		 
+		 	private int i = 0;
+	        public Maker(){}	  
+	        
 	        public void run()  
 	        {   
 	        	while(true)
 	        	{
-	        		lock.lock();
-	        		if (oxnum == 0 || oxnum == 1)
-	        		{
-	        			System.out.println("nofity to provide O");
-	        			OxStart.signalAll();
-	        		}
-	        		if (hynum == 0)
-	        		{
-	        			System.out.println("nofity to provide H");
-	        			Hystart.signalAll();	        			
-	        		}
 	        		try {
-						makewater.await();				
-						System.out.println("start to make H2O");
-						oxnum -= 2;
-						hynum--;						
-	        		} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}	        		
-	        		lock.unlock();
+	        			Makewater.acquire();			
+						i++;
+						System.out.println("-------start to make H2O, Num = " + i);
+						oxnum--;
+						hynum -= 2;
+						Oxygen.release();
+						Hydrogen.release(2);
+	        		}
+					catch (InterruptedException e1) {
+			                e1.printStackTrace();
+			        }
+	        		
 	        	}        	
 	        }
 	        	
@@ -90,24 +62,29 @@ public class H2O {
         	
         public void run()  
         {   
+			try {
+				Oxygen.acquire();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         	lock.lock();
-        	try {
-	        	System.out.println("start to provide Oxygen");
-	        	oxnum++;
-	        	System.out.println("Oxygen num = " + oxnum);
-	        	if (oxnum >= 1  && hynum >= 2)
-	        	{
-	        		makewater.signal();
-	        	}
-	        	else
-	        	{
-	        		OxStart.signal();
-	        	}
-        	}
-         	finally
-        	{
-        		lock.unlock();
-        	}    	
+        
+	        System.out.println("------------start to provide Oxygen-----------");
+	        oxnum++;
+	        System.out.println("Oxygen num = " + oxnum);
+	        if (hynum >= 2)
+	        {
+	        	System.out.println("notify to make H2O");
+	        	Makewater.release();
+	        }
+	        try {
+                Thread.sleep(10);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
+        	lock.unlock();
+	
         }
         	
     }
@@ -118,26 +95,34 @@ public class H2O {
         	
         public void run()  
         {    
+			try {
+				Hydrogen.acquire();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         	lock.lock();
-        	try
-        	{
-        		System.out.println("start to provide Hydrogen");
-	        	hynum++;
-	        	System.out.println("Hydrogen num = " + hynum);
-	        	if (oxnum >= 1  && hynum >= 2)
-	        	{
-	        		makewater.signal();
-	        	}
-	        	else
-	        	{
-	        		Hystart.signal();
-	        	}
-        	}
-        	
-        	finally
-        	{
-        		lock.unlock();
-        	}
+
+        	System.out.println("-------start to provide Hydrogen------");
+	        hynum++;
+	        System.out.println("Hydrogen num = " + hynum);
+	        if (oxnum >= 1 && hynum >= 2)
+	        {
+	        	System.out.println("notify to make H2O");
+	        	Makewater.release();
+	        }
+	        try {
+	            Thread.sleep(10);
+	        } catch (InterruptedException e1) {
+	            e1.printStackTrace();
+	        }
+
+	        try {
+                Thread.sleep(10);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
+        	lock.unlock();
 	
         }
         	
