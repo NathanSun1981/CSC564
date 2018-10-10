@@ -1,21 +1,44 @@
 
 
+import java.util.Vector;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ReaderWriter {
 	private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();   
 
-    public static void main(String[] args) {    	
+    public static void main(String[] args) {    
+    	
+    	long startTime=System.currentTimeMillis();  
+    	Vector<Thread> threads = new Vector<Thread>();
+    	
     	ReaderWriter rw = new ReaderWriter();
 
-    	for(int i = 0; i < 3; i++)
+    	for(int i = 0; i < 500; i++)
         {
-        	new Thread(rw.new Writer(i)).start();
+
+        	Thread iThread =  new Thread(rw.new Writer(i));
+        	threads.add(iThread);    
+        	iThread.start();
+        		
         }
-        for(int i = 0; i < 10; i++)
+        for(int i = 0; i < 1000; i++)
         {
-	       	new Thread(rw.new Reader(i)).start();
+	       	Thread iThread =  new Thread(rw.new Reader(i));
+        	threads.add(iThread);    
+        	iThread.start();
         }
+        
+        for (Thread iThread : threads) {
+            try {
+              iThread.join();
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+        }
+     
+        
+        long endTime=System.currentTimeMillis();       
+        System.out.println("\"All threads elapsed: "+(endTime-startTime)+"ms");
     }
   
     class Writer implements Runnable {

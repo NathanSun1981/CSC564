@@ -1,9 +1,10 @@
 
 
-import java.util.LinkedList;  
+import java.util.LinkedList;
+import java.util.Vector;
 import java.util.concurrent.locks.Condition;  
 import java.util.concurrent.locks.Lock;  
-import java.util.concurrent.locks.ReentrantLock;  
+import java.util.concurrent.locks.ReentrantLock;
 
 public class ProducerCustomer {
 
@@ -15,13 +16,34 @@ public class ProducerCustomer {
     private final Condition emptyLock = lock.newCondition();  
     
     public static void main(String[] args) {
+    	
+    	long startTime=System.currentTimeMillis();  
+    	Vector<Thread> threads = new Vector<Thread>();
+    	
         ProducerCustomer pc = new ProducerCustomer();
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 100; i++)
         {
-	      	new Thread(pc.new Producer(i)).start();
-	       	new Thread(pc.new Consumer(i)).start();
+	      	Thread iThread =  new Thread(pc.new Producer(i));
+        	threads.add(iThread);    
+        	iThread.start();   	
+	       	
+	       	Thread jThread =  new Thread(pc.new Consumer(i));
+        	threads.add(jThread);    
+        	jThread.start();
         }
 
+        for (Thread iThread : threads) {
+            try {
+              iThread.join();
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+        }
+     
+        
+        long endTime=System.currentTimeMillis();       
+        System.out.println("\"All threads elapsed: "+(endTime-startTime)+"ms");
+        
     }
   
     class Producer implements Runnable {
@@ -35,7 +57,7 @@ public class ProducerCustomer {
         @Override
         public void run()  
         {  
-        	for (int i = 0; i < 10; i++) {
+        	for (int i = 0; i < 100; i++) {
         		try {
                     Thread.sleep(1);
                 } catch (InterruptedException e1) {
@@ -74,7 +96,7 @@ public class ProducerCustomer {
     	@Override
     	public void run()  
         {   
-    		for (int i = 0; i < 10; i++) {
+    		for (int i = 0; i < 100; i++) {
     			try {
                     Thread.sleep(1);
                 } catch (InterruptedException e1) {

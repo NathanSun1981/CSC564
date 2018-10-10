@@ -1,18 +1,37 @@
 
 import java.util.concurrent.locks.ReentrantLock;
+
+
+import java.util.Vector;
 import java.util.concurrent.TimeUnit;
 
 public class DiningPhilosophers2 {
     public static void main(String[] args) {
     	DiningPhilosophers2 dp = new DiningPhilosophers2();
     	ReentrantLock[] fork =  new ReentrantLock[5];
+    	long startTime=System.currentTimeMillis();  
+    	Vector<Thread> threads = new Vector<Thread>();
+    	
 	    for (int i = 0; i < 5; i++) {
 	    	fork[i] = new ReentrantLock();  
 	    }
 
 	    for (int i = 0; i < 5; i++) {
-	        new Thread(dp.new Philosopher(i, fork[i], fork[(i + 1) % 5])).start();   
+	        Thread iThread =  new Thread(dp.new Philosopher(i, fork[i], fork[(i + 1) % 5]));
+        	threads.add(iThread);    
+        	iThread.start();
 	    }
+	    
+	    for (Thread iThread : threads) {
+            try {
+              iThread.join();
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+        }
+         
+        long endTime=System.currentTimeMillis();       
+        System.out.println("\"All threads elapsed: "+(endTime-startTime)+"ms");
 	 }
     
 	class Fork {
@@ -32,9 +51,11 @@ public class DiningPhilosophers2 {
 	    }
 
 	    public void run() {
-	        while (true) {
+	        //while (true) {
+	        for (int i = 0; i < 100; i++) 
+	        {
 	        	try {
-	                Thread.sleep(100);
+	                Thread.sleep(1);
 	            } catch (InterruptedException e1) {
 	                e1.printStackTrace();
 	            }
@@ -44,16 +65,16 @@ public class DiningPhilosophers2 {
 	            //take the left fork
 	            //System.out.println("Philosopher " + id + " take the left fork"); 
 	            try {
-                    Thread.sleep(100);
+                    Thread.sleep(1);
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }
 
 	            try{
 	            	//System.out.println("Philosopher " + id + " try to get the right fork");
-                    if(right.tryLock(1000,TimeUnit.MILLISECONDS)){
+                    if(right.tryLock(100,TimeUnit.MILLISECONDS)){
                         try{
-                            Thread.sleep(100);//
+                            Thread.sleep(1);//
                             //System.out.println("Philosopher " + id + " take the right fork");
                             System.out.println("Philosopher " + id + " is eating"); 
                         }finally {

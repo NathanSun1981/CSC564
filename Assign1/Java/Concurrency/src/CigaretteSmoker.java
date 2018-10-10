@@ -18,9 +18,14 @@ public class CigaretteSmoker {
 	private final Condition agent = ingredientlock.newCondition();
 
 	private boolean isPaper, isMatch, isTobacco = false;
+	
+	private static int smokernum;
+	private static long startTime;
 
 	public static void main(String[] args) {
 		ReentrantLock PuserLock =  new ReentrantLock();
+		startTime=System.currentTimeMillis(); 
+		smokernum = 0;
 		// TODO Auto-generated method stub
 		CigaretteSmoker cs = new CigaretteSmoker();
 		new Thread(cs.new Smoker("Tobacco")).start();
@@ -108,7 +113,7 @@ public class CigaretteSmoker {
 						}
 						//System.out.println("final resutlt =" + isPaper + isMatch + isTobacco);
 						try {
-			                Thread.sleep(10);
+			                Thread.sleep(1);
 			            } catch (InterruptedException e1) {
 			                e1.printStackTrace();
 			            }
@@ -150,7 +155,7 @@ public class CigaretteSmoker {
 						}
 						//System.out.println("final resutlt =" + isPaper + isMatch + isTobacco);
 						try {
-			                Thread.sleep(10);
+			                Thread.sleep(1);
 			            } catch (InterruptedException e1) {
 			                e1.printStackTrace();
 			            }
@@ -184,6 +189,7 @@ public class CigaretteSmoker {
 					try {
 						tobaccosem.await();
 						System.out.println("Tobacco smoker get Paper and Matches, start to make cigarette...");
+						smokernum++;
 						agent.signal();//enable agent to dispose ingredients				
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
@@ -195,15 +201,11 @@ public class CigaretteSmoker {
 					}
 				}
 				else if (ownIngredient.equals("Paper")) {
-					try {
-		                Thread.sleep(100);
-		            } catch (InterruptedException e1) {
-		                e1.printStackTrace();
-		            }
 					ingredientlock.lock();
 					try {
 						papersem.await();
 						System.out.println("Paper smoker get Tobacco and Matches, start to make cigarette...");
+						smokernum++;
 						agent.signal();//enable agent to dispose ingredients			
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
@@ -215,15 +217,11 @@ public class CigaretteSmoker {
 					}
 				}
 				else if (ownIngredient.equals("Match")) {
-					try {
-		                Thread.sleep(100);
-		            } catch (InterruptedException e1) {
-		                e1.printStackTrace();
-		            }
 					ingredientlock.lock();
 					try {
 						matchsem.await();
 						System.out.println("Match smoker get Tobacco and Matches, start to make cigarette...");
+						smokernum++;
 						agent.signal();//enable agent to dispose ingredients					
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
@@ -249,11 +247,19 @@ public class CigaretteSmoker {
 			while(true)
 			{
 				try {
-	                Thread.sleep(100);
+	                Thread.sleep(10);
 	            } catch (InterruptedException e1) {
 	                e1.printStackTrace();
 	            }
+				
 				ingredientlock.lock();
+				if (smokernum == 100)
+				{
+					long endTime=System.currentTimeMillis();       
+			        System.out.println("Smoler num = " + smokernum + "All threads elapsed: "+(endTime-startTime)+"ms");
+					break;
+				}
+				
 				try {
 					//agentLock.lock();
 					//dispose times

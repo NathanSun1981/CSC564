@@ -12,20 +12,25 @@ public class H2O {
 	
 	private int oxnum = 0;
 	private int hynum = 0;
+	private static long startTime;
 	
 	public static void main(String[] args) {
         H2O h2o = new H2O();
+        
+        startTime=System.currentTimeMillis(); 
             
         new Thread(h2o.new Maker()).start();  
             		          	
-        for(int i = 0; i < 30; i++)
+        for(int i = 0; i < 100; i++)
         {
             new Thread(h2o.new Oxygen()).start();  
         }
-            for(int i = 0; i < 60; i++)
+            for(int i = 0; i < 200; i++)
         {
             new Thread(h2o.new Hydrogen()).start();  
-        }			     
+        }	
+            
+        
 	}
 	
 	 class Maker implements Runnable {
@@ -37,11 +42,16 @@ public class H2O {
 	        public void run()  
 	        {   
 	        	while(true)
-	        	{
+	        	{       			   		
 	        		try {
 	        			Makewater.acquire();			
 						i++;
 						System.out.println("-------start to make H2O, Num = " + i);
+						if (i == 100)
+						{
+							long endTime=System.currentTimeMillis();       
+						    System.out.println("All threads elapsed: "+(endTime-startTime)+"ms");
+						}
 						oxnum--;
 						hynum -= 2;
 						Oxygen.release();
@@ -78,11 +88,7 @@ public class H2O {
 	        	System.out.println("notify to make H2O");
 	        	Makewater.release();
 	        }
-	        try {
-                Thread.sleep(10);
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
-            }
+	        
         	lock.unlock();
 	
         }
@@ -111,17 +117,7 @@ public class H2O {
 	        	System.out.println("notify to make H2O");
 	        	Makewater.release();
 	        }
-	        try {
-	            Thread.sleep(10);
-	        } catch (InterruptedException e1) {
-	            e1.printStackTrace();
-	        }
-
-	        try {
-                Thread.sleep(10);
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
-            }
+	       
         	lock.unlock();
 	
         }

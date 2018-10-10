@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec51419f-7dba-4bd9-8efe-eeb97577e130" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Src/Concurrency/MyProblem.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.recommenders/index/http___download_eclipse_org_recommenders_models_photon_/write.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Java/Concurrency/bin/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Java/Concurrency/bin/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Concurrency/CigaretteSomker.go" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Concurrency/CigaretteSomker.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Concurrency/MakeH2O.go" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Concurrency/MakeH2O.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Concurrency/MyProblem.go" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Concurrency/MyProblem.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Concurrency/producercustomer.go" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Concurrency/producercustomer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Concurrency/readerwriter.go" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Concurrency/readerwriter.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,30 +18,31 @@
     <session id="844753304">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.5" value="2" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="go" value="13" />
+          <entry key="go" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Go" value="13" />
+          <entry key="Go" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="go" value="2465" />
+          <entry key="go" value="3413" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Go" value="2465" />
+          <entry key="Go" value="3413" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -68,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Src/Concurrency/producercustomer.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+            <state relative-caret-position="85">
+              <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -77,8 +79,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Src/Concurrency/CigaretteSomker.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1411">
-              <caret line="88" column="16" selection-start-line="88" selection-start-column="11" selection-end-line="88" selection-end-column="16" />
+            <state relative-caret-position="124">
+              <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
               <folding>
                 <element signature="e#14#60#0" expanded="true" />
               </folding>
@@ -89,8 +91,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Src/Concurrency/MakeH2O.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1326">
-              <caret line="82" column="19" selection-start-line="82" selection-start-column="19" selection-end-line="82" selection-end-column="19" />
+            <state relative-caret-position="136">
+              <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
             </state>
           </provider>
         </entry>
@@ -98,8 +100,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Src/Concurrency/readerwriter.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+            <state relative-caret-position="73">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="e#14#47#0" expanded="true" />
               </folding>
@@ -110,11 +112,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Src/Concurrency/MyProblem.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="47" lean-forward="true" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
-              <folding>
-                <element signature="e#13#47#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="34">
+              <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -128,6 +127,12 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>99</find>
+      <find>100</find>
+    </findStrings>
+  </component>
   <component name="GOROOT" path="C:\Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -135,11 +140,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Src/Concurrency/CigaretteSomker.go" />
         <option value="$PROJECT_DIR$/Src/Concurrency/test.go" />
-        <option value="$PROJECT_DIR$/Src/Concurrency/MakeH2O.go" />
         <option value="$PROJECT_DIR$/Src/Concurrency/Run.go" />
+        <option value="$PROJECT_DIR$/Src/Concurrency/readerwriter.go" />
+        <option value="$PROJECT_DIR$/Src/Concurrency/CigaretteSomker.go" />
+        <option value="$PROJECT_DIR$/Src/Concurrency/MakeH2O.go" />
         <option value="$PROJECT_DIR$/Src/Concurrency/MyProblem.go" />
+        <option value="$PROJECT_DIR$/Src/Concurrency/producercustomer.go" />
       </list>
     </option>
   </component>
@@ -166,6 +173,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -188,7 +196,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -237,11 +244,11 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="go build Run.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build producercustomer.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Go" />
       <working_directory value="$PROJECT_DIR$/" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/Src/Concurrency/Run.go" />
+      <filePath value="$PROJECT_DIR$/Src/Concurrency/producercustomer.go" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
@@ -255,18 +262,18 @@
     </configuration>
     <list>
       <item itemvalue="Go Build.go build readerwriter.go" />
+      <item itemvalue="Go Build.go build MyProblem.go" />
+      <item itemvalue="Go Build.go build producercustomer.go" />
       <item itemvalue="Go Build.go build CigaretteSomker.go" />
       <item itemvalue="Go Build.go build MakeH2O.go" />
-      <item itemvalue="Go Build.go build MyProblem.go" />
-      <item itemvalue="Go Build.go build Run.go" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build MyProblem.go" />
-        <item itemvalue="Go Build.go build Run.go" />
-        <item itemvalue="Go Build.go build readerwriter.go" />
-        <item itemvalue="Go Build.go build MakeH2O.go" />
         <item itemvalue="Go Build.go build CigaretteSomker.go" />
+        <item itemvalue="Go Build.go build readerwriter.go" />
+        <item itemvalue="Go Build.go build producercustomer.go" />
+        <item itemvalue="Go Build.go build MakeH2O.go" />
       </list>
     </recent_temporary>
   </component>
@@ -274,7 +281,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20788912" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21002132" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -302,13 +309,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Src/hello/hello.go" />
-    <entry file="file://C:/Go/src/sync/waitgroup.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="70" column="40" lean-forward="true" selection-start-line="70" selection-start-column="40" selection-end-line="70" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Src/golang.org/x/tools/cmd/guru/unit_test.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -317,13 +317,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Src/Concurrency/test.go" />
-    <entry file="file://C:/Go/src/runtime/sema.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="70" selection-start-line="70" selection-end-line="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Go/src/sync/mutex.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1114">
@@ -331,54 +324,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Src/Concurrency/producercustomer.go">
+    <entry file="file://$PROJECT_DIR$/Src/Concurrency/Run.go" />
+    <entry file="file://C:/Go/src/runtime/sema.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        <state relative-caret-position="137">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Src/Concurrency/CigaretteSomker.go">
+    <entry file="file://C:/Go/src/sync/waitgroup.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1411">
-          <caret line="88" column="16" selection-start-line="88" selection-start-column="11" selection-end-line="88" selection-end-column="16" />
-          <folding>
-            <element signature="e#14#60#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="138">
+          <caret line="129" selection-start-line="129" selection-end-line="129" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Src/Concurrency/MakeH2O.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="82" column="19" selection-start-line="82" selection-start-column="19" selection-end-line="82" selection-end-column="19" />
+        <state relative-caret-position="136">
+          <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Src/Concurrency/producercustomer.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Src/Concurrency/readerwriter.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+        <state relative-caret-position="73">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="e#14#47#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Src/Concurrency/Run.go">
+    <entry file="file://$PROJECT_DIR$/Src/Concurrency/CigaretteSomker.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="124">
+          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+          <folding>
+            <element signature="e#14#60#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Src/Concurrency/MyProblem.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="47" lean-forward="true" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
-          <folding>
-            <element signature="e#13#47#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="34">
+          <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
         </state>
       </provider>
     </entry>

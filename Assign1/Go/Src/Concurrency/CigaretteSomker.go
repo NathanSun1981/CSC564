@@ -25,10 +25,15 @@ type Pusher struct {
 	match chan int
 }
 
+var smokernum int
 
 func disposer(p *Pusher, smokers [3]chan int) {
 	for {
 		//time.Sleep(time.Millisecond * 500)
+		if smokernum == 100{
+			fmt.Printf("smokernum arrive 100")
+			break
+		}
 		i := rand.Intn(3)
 		switch i {
 		case paper:
@@ -76,6 +81,7 @@ func smoker(p *Pusher, smokes int, signal chan int) {
 		}
 		fmt.Printf("paper: %d tobacco: %d match: %d\n", len(p.paper), len(p.tobacco), len(p.match))
 		fmt.Printf("smokes a cigarette\n")
+		smokernum++
 		time.Sleep(time.Millisecond * 10)
 		wg.Done()
 		//time.Sleep(time.Millisecond * 100)
@@ -85,6 +91,8 @@ var wg *sync.WaitGroup
 
 func main() {
 	wg = new(sync.WaitGroup)
+	smokernum = 0
+	t1 := time.Now()
 	pusher := new(Pusher)
 	pusher.match = make(chan int, 1)
 	pusher.paper = make(chan int, 1)
@@ -98,5 +106,9 @@ func main() {
 	}
 
 	disposer(pusher, signals)
+
+	elapsed := time.Since(t1)
+
+	fmt.Println("All threads elapsed: ", elapsed)
 
 }

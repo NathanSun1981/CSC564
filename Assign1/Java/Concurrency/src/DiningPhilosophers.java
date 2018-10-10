@@ -1,17 +1,34 @@
+import java.util.Vector;
 
 
 public class DiningPhilosophers {
 	
     public static void main(String[] args) {
     	DiningPhilosophers dp = new DiningPhilosophers();
+    	long startTime=System.currentTimeMillis();  
+    	Vector<Thread> threads = new Vector<Thread>();
     	
     	Fork[] fork = new Fork[5];
 	    for (int i = 0; i < 5; i++) {
 	    	fork[i] = dp.new Fork();     //total 5 chopsticks 
 	    }
 	    for (int i = 0; i < 5; i++) {
-	        new Thread(dp.new Philosopher(i, fork[i], fork[(i + 1) % 5])).start();    
+	        Thread iThread =  new Thread(dp.new Philosopher(i, fork[i], fork[(i + 1) % 5]));
+        	threads.add(iThread);    
+        	iThread.start();
 	    }
+	    
+	    for (Thread iThread : threads) {
+            try {
+              iThread.join();
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+        }
+         
+        long endTime=System.currentTimeMillis();       
+        System.out.println("\"All threads elapsed: "+(endTime-startTime)+"ms");
+	    
 	 }
 
 	class Fork {
